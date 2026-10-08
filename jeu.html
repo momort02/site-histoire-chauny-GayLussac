@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#d9e7e4">
+  <meta name="description" content="Recompose la mosaïque du marché aux poissons de Chauny dans ce puzzle interactif.">
+  <title>Mini-jeu puzzle | Chauny Art déco</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=DM+Serif+Display&display=swap" rel="stylesheet">
+  <style>
+    :root{color-scheme:light;--paper:#d9e7e4;--white:#fffefa;--ink:#202722;--muted:#58645d;--green:#28665d;--deep:#19483f;--red:#b94f39;--yellow:#edbd55;--line:#b8cbc3;--serif:"DM Serif Display",Georgia,serif;--sans:"DM Sans","Trebuchet MS",sans-serif;--content:1080px}
+    *,*::before,*::after{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;min-height:100vh;color:var(--ink);background:var(--paper);font:16px/1.6 var(--sans)}button,a{font:inherit;touch-action:manipulation}a{color:inherit}button:focus-visible,a:focus-visible{outline:3px solid var(--red);outline-offset:4px}
+    .header{border-bottom:1px solid var(--line);background:rgb(217 231 228 / 90%)}.header-inner{width:min(var(--content),calc(100% - 40px));min-height:68px;margin:auto;display:flex;align-items:center;justify-content:space-between;gap:18px}.brand{display:flex;align-items:center;gap:11px;color:var(--deep);font-size:13px;font-weight:700;line-height:1.2;text-decoration:none}.brand-mark{width:28px;height:28px;display:grid;place-items:center;border:1px solid var(--green);font:16px/1 var(--serif);transform:rotate(45deg)}.brand-mark span{transform:rotate(-45deg)}.back-link{color:var(--deep);font-size:13px;font-weight:700;text-decoration-thickness:1px;text-underline-offset:4px}.back-link:hover{color:var(--red)}
+    main{width:min(var(--content),calc(100% - 40px));margin:auto;padding:72px 0 90px}.intro{max-width:660px;margin-bottom:35px}.eyebrow{margin:0 0 13px;color:var(--red);font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase}h1{margin:0 0 14px;font:400 clamp(42px,6vw,68px)/1.02 var(--serif);text-wrap:balance}.intro-copy{max-width:590px;margin:0;color:var(--muted)}
+    .game-layout{display:grid;grid-template-columns:.72fr 1.28fr;gap:52px;align-items:center}.game-info{padding:25px 0;border-top:1px solid #a9c1b8;border-bottom:1px solid #a9c1b8}.instructions{margin:0;color:var(--muted)}.status{min-height:52px;margin:22px 0 0;color:var(--deep);font-size:14px;font-weight:700}.victory{margin:0 0 16px;padding:14px 16px;border-left:4px solid var(--yellow);background:var(--white);color:var(--deep);font:400 24px/1.2 var(--serif)}.victory[hidden]{display:none}.controls{display:flex;flex-wrap:wrap;gap:10px}.controls button{min-height:46px;padding:10px 14px;border:1px solid var(--deep);background:transparent;color:var(--deep);font-size:13px;font-weight:700;cursor:pointer}.controls button:first-child{background:var(--deep);color:#fff}.controls button:hover{background:var(--green);color:#fff}.board-wrap{min-width:0}.board{width:100%;aspect-ratio:8/3;padding:5px;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));grid-template-rows:repeat(3,minmax(0,1fr));gap:4px;border:1px solid #668078;background:#668078;box-shadow:9px 9px 0 rgb(25 72 63 / 13%)}.piece{position:relative;min-width:0;min-height:0;padding:0;border:0;background-color:#e2ece6;background-repeat:no-repeat;cursor:pointer;touch-action:manipulation;transition:filter 150ms ease}.piece:hover{filter:brightness(1.08);z-index:1}.piece[aria-pressed="true"]{outline:4px solid var(--yellow);outline-offset:-4px;filter:brightness(1.12);z-index:2}.piece:focus-visible{outline:4px solid var(--red);outline-offset:-4px;z-index:3}.board.is-solved{border-color:var(--yellow);box-shadow:9px 9px 0 rgb(185 79 57 / 18%)}.hint{margin:12px 0 0;color:var(--muted);font-size:12px}.preview{margin:16px 0 0;padding:9px;border:1px solid #9db7ad;background:var(--white)}.preview img{width:100%;height:auto;display:block}.preview figcaption{padding:7px 2px 0;color:var(--muted);font-size:11px}
+    .confetti-layer{position:fixed;z-index:20;inset:0;overflow:hidden;pointer-events:none}.confetti-piece{position:absolute;top:-18px;left:var(--x);width:9px;height:14px;border-radius:2px;background:var(--confetti-color);opacity:0;animation:confetti-fall var(--duration) var(--delay) ease-in forwards}.confetti-piece:nth-child(3n){width:7px;height:7px;border-radius:50%}.confetti-piece:nth-child(4n){width:6px;height:17px}.@keyframes confetti-fall{0%{opacity:0;transform:translate3d(0,-4vh,0) rotate(0)}12%{opacity:1}100%{opacity:0;transform:translate3d(var(--drift),108vh,0) rotate(var(--spin))}}
+    footer{padding:19px 20px;border-top:1px solid var(--line);color:var(--muted);font-size:11px}.footer-inner{width:min(var(--content),100%);margin:auto;display:flex;justify-content:space-between;gap:16px}footer a{color:var(--deep)}
+    @media(max-width:760px){.header-inner{width:calc(100% - 32px);min-height:62px}.brand{font-size:11px}.main{padding-top:48px}main{width:calc(100% - 36px);padding:48px 0 64px}.game-layout{grid-template-columns:1fr;gap:24px}.intro{margin-bottom:27px}.game-info{padding:19px 0}.status{min-height:0;margin:13px 0 17px}.board{gap:3px;padding:4px}.hint{font-size:11px}.footer-inner{flex-direction:column;gap:5px}}
+    @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.piece{transition:none}.confetti-piece{display:none}}
+  </style>
+  <script defer>
+    document.addEventListener('DOMContentLoaded', () => {
+      const imageUrl = new URL('images/poissons.png', document.baseURI).href;
+      const imageBackground = `url("${imageUrl}")`;
+      const board = document.querySelector('#puzzle-board');
+      const status = document.querySelector('#puzzle-status');
+      const victory = document.querySelector('#victory-message');
+      const confettiLayer = document.querySelector('#confetti-layer');
+      const pieces = Array.from({length:12}, (_, index) => index);
+      const colors = ['#b94f39','#edbd55','#28665d','#fffefa','#466c86'];
+      let selectedPiece = null;
+      let moves = 0;
+      let solved = false;
+
+      function renderPuzzle() {
+        board.replaceChildren();
+        pieces.forEach((piece, slot) => {
+          const tile = document.createElement('button');
+          const column = piece % 4;
+          const row = Math.floor(piece / 4);
+          tile.type = 'button';
+          tile.className = 'piece';
+          tile.setAttribute('aria-label', `Case ${slot + 1}, pièce ${piece + 1}`);
+          tile.setAttribute('aria-pressed', String(selectedPiece === slot));
+          tile.style.backgroundImage = imageBackground;
+          tile.style.backgroundSize = '400% 300%';
+          tile.style.backgroundPosition = `${column / 3 * 100}% ${row / 2 * 100}%`;
+          tile.addEventListener('click', () => selectPiece(slot));
+          board.append(tile);
+        });
+      }
+
+      function celebrate() {
+        victory.hidden = false;
+        victory.textContent = `Bravo ! Tu as reconstitué la mosaïque en ${moves} coups !`;
+        confettiLayer.replaceChildren();
+        if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+        for (let index = 0; index < 44; index += 1) {
+          const confetti = document.createElement('span');
+          confetti.className = 'confetti-piece';
+          confetti.style.setProperty('--x', `${Math.random() * 100}%`);
+          confetti.style.setProperty('--drift', `${Math.random() * 180 - 90}px`);
+          confetti.style.setProperty('--duration', `${2.5 + Math.random() * 1.8}s`);
+          confetti.style.setProperty('--delay', `${Math.random() * 0.7}s`);
+          confetti.style.setProperty('--spin', `${360 + Math.random() * 900}deg`);
+          confetti.style.setProperty('--confetti-color', colors[index % colors.length]);
+          confettiLayer.append(confetti);
+        }
+        window.setTimeout(() => confettiLayer.replaceChildren(), 5000);
+      }
+
+      function selectPiece(slot) {
+        if (solved) return;
+        if (selectedPiece === null) {
+          selectedPiece = slot;
+        } else if (selectedPiece === slot) {
+          selectedPiece = null;
+        } else {
+          [pieces[selectedPiece], pieces[slot]] = [pieces[slot], pieces[selectedPiece]];
+          selectedPiece = null;
+          moves += 1;
+          solved = pieces.every((piece, index) => piece === index);
+        }
+        renderPuzzle();
+        board.classList.toggle('is-solved', solved);
+        status.textContent = selectedPiece !== null
+          ? 'Pièce sélectionnée. Choisis une autre case pour l’échanger.'
+          : `${moves} coup${moves > 1 ? 's' : ''} · Sélectionne deux pièces pour les échanger.`;
+        if (solved) celebrate();
+      }
+
+      function shufflePuzzle() {
+        for (let index = pieces.length - 1; index > 0; index -= 1) {
+          const other = Math.floor(Math.random() * (index + 1));
+          [pieces[index], pieces[other]] = [pieces[other], pieces[index]];
+        }
+        if (pieces.every((piece, index) => piece === index)) [pieces[0], pieces[1]] = [pieces[1], pieces[0]];
+        selectedPiece = null;
+        moves = 0;
+        solved = false;
+        victory.hidden = true;
+        confettiLayer.replaceChildren();
+        board.classList.remove('is-solved');
+        status.textContent = '0 coup · Sélectionne deux pièces pour les échanger.';
+        renderPuzzle();
+      }
+
+      document.querySelector('#shuffle-puzzle').addEventListener('click', shufflePuzzle);
+      const previewButton = document.querySelector('#preview-puzzle');
+      previewButton.addEventListener('click', () => {
+        const preview = document.querySelector('#puzzle-preview');
+        preview.hidden = !preview.hidden;
+        previewButton.setAttribute('aria-expanded', String(!preview.hidden));
+        previewButton.textContent = preview.hidden ? 'Voir le modèle' : 'Masquer le modèle';
+      });
+      document.querySelector('#puzzle-model').src = imageUrl;
+      shufflePuzzle();
+    });
+  </script>
+</head>
+<body>
+  <div class="confetti-layer" id="confetti-layer" aria-hidden="true"></div>
+  <header class="header"><div class="header-inner">
+    <a class="brand" href="index.html" aria-label="Retour à Chauny Art déco"><span class="brand-mark" aria-hidden="true"><span>C</span></span><span>CHAUNY<br>ART DÉCO</span></a>
+    <a class="back-link" href="index.html">← Retour à l’exposition</a>
+  </div></header>
+  <main>
+    <section class="intro" aria-labelledby="titre-jeu">
+      <p class="eyebrow">Jeu interactif · Marché aux poissons</p>
+      <h1 id="titre-jeu">Recompose l’enseigne</h1>
+      <p class="intro-copy">La mosaïque du marché aux poissons a perdu ses carreaux. Remets-les à leur place pour faire réapparaître l’enseigne « POISSONS ».</p>
+    </section>
+    <section class="game-layout" aria-label="Puzzle de la mosaïque">
+      <div class="game-info">
+        <p class="instructions">Sélectionne une pièce, puis une deuxième pour les échanger. Continue jusqu’à ce que l’image soit reconstituée.</p>
+        <p class="status" id="puzzle-status" aria-live="polite">Préparation du puzzle…</p>
+        <p class="victory" id="victory-message" role="status" hidden></p>
+        <div class="controls">
+          <button type="button" id="shuffle-puzzle">Mélanger les pièces</button>
+          <button type="button" id="preview-puzzle" aria-expanded="false" aria-controls="puzzle-preview">Voir le modèle</button>
+        </div>
+      </div>
+      <div class="board-wrap">
+        <div class="board" id="puzzle-board" aria-label="Puzzle de 12 pièces de la mosaïque POISSONS"></div>
+        <p class="hint">Le jeu compte tes échanges. Tu peux recommencer quand tu veux.</p>
+        <figure class="preview" id="puzzle-preview" hidden>
+          <img id="puzzle-model" alt="Enseigne en mosaïque POISSONS du marché aux poissons de Chauny" width="945" height="376">
+          <figcaption>Photo de la mosaïque du marché aux poissons.</figcaption>
+        </figure>
+      </div>
+    </section>
+  </main>
+  <footer><div class="footer-inner"><span>Parcours Art déco de Chauny · Place du Marché Couvert</span><a href="index.html#ceramistes">Découvrir Gentil et Bourdet</a></div></footer>
+</body>
+</html>
