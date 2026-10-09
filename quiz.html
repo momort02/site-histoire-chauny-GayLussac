@@ -9,18 +9,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=DM+Serif+Display&display=swap" rel="stylesheet">
-  <style>
-    :root{color-scheme:light;--paper:#f5f5ef;--white:#fffefa;--ink:#202722;--muted:#58645d;--green:#28665d;--deep:#19483f;--pale:#e2ece6;--red:#b94f39;--yellow:#edbd55;--line:#ccd3cc;--serif:"DM Serif Display",Georgia,serif;--sans:"DM Sans","Trebuchet MS",sans-serif;--content:900px}
-    *,*::before,*::after{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;color:var(--ink);background:var(--paper);font:16px/1.6 var(--sans)}a{color:inherit}button,input{font:inherit}button,a,input{touch-action:manipulation}button:focus-visible,a:focus-visible,input:focus-visible{outline:3px solid var(--red);outline-offset:4px}
-    .header{border-bottom:1px solid var(--line);background:var(--paper)}.header-inner{width:min(var(--content),calc(100% - 40px));min-height:68px;margin:auto;display:flex;align-items:center;justify-content:space-between;gap:20px}.brand{display:flex;align-items:center;gap:11px;color:var(--deep);font-size:13px;font-weight:700;line-height:1.2;text-decoration:none}.brand-mark{width:28px;height:28px;display:grid;place-items:center;border:1px solid var(--green);font:16px/1 var(--serif);transform:rotate(45deg)}.brand-mark span{transform:rotate(-45deg)}.back-link{color:var(--deep);font-size:13px;font-weight:700;text-decoration-thickness:1px;text-underline-offset:4px}.back-link:hover{color:var(--red)}
-    main{width:min(var(--content),calc(100% - 40px));margin:auto;padding:66px 0 90px}.intro{margin-bottom:42px;padding:35px 0 29px;border-bottom:1px solid var(--line);position:relative}.intro:after{position:absolute;right:18px;top:14px;width:60px;height:60px;border:1px solid #cdd2c6;content:"";transform:rotate(45deg);pointer-events:none}.eyebrow{margin:0 0 12px;color:var(--red);font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase}h1{max-width:700px;margin:0 0 14px;font:400 clamp(44px,6vw,66px)/1.02 var(--serif);text-wrap:balance}.intro p:last-child{max-width:650px;margin:0;color:var(--muted)}
-    .progress-row{margin-bottom:22px;display:flex;align-items:center;justify-content:space-between;gap:20px;color:var(--muted);font-size:13px}.progress-row strong{color:var(--deep)}progress{width:min(240px,48%);height:8px;accent-color:var(--green)}
-    form{display:grid;gap:14px}.question{min-width:0;margin:0;padding:22px 24px 19px;border:1px solid var(--line);background:var(--white)}.question legend{width:100%;padding:0 0 13px;font-weight:700}.answers{display:grid;grid-template-columns:1fr 1fr;gap:8px 12px}.answer{min-height:46px;padding:10px 12px;display:flex;align-items:center;gap:10px;border:1px solid #e2e5df;background:#fff;color:var(--muted);cursor:pointer;transition:border-color 150ms ease,background 150ms ease}.answer:hover{border-color:#829f91;background:#f8faf6}.answer input{width:17px;height:17px;flex:0 0 auto;accent-color:var(--deep)}.question.is-correct{border-left:4px solid var(--green)}.question.is-wrong{border-left:4px solid var(--red)}.question.is-missing{border-color:var(--red)}.question-feedback{min-height:0;margin:10px 0 0;color:var(--muted);font-size:13px}.question-feedback:empty{display:none}.question.is-correct .question-feedback{color:var(--deep)}.question.is-wrong .question-feedback{color:#8e392a}
-    .actions{padding:10px 0 0;display:flex;align-items:center;flex-wrap:wrap;gap:12px}.submit,.reset{min-height:48px;padding:11px 17px;border:1px solid var(--deep);font-size:14px;font-weight:700;cursor:pointer}.submit{background:var(--deep);color:#fff}.submit:hover{background:var(--green)}.reset{background:transparent;color:var(--deep)}.reset:hover{background:var(--pale)}.result{min-height:28px;margin:0 0 0 4px;color:var(--deep);font-weight:700}.result.error{color:#963c2e}.result:focus{outline:2px solid var(--green);outline-offset:4px}
-    .closing{margin-top:70px;padding:25px 0;border-top:1px solid var(--line);display:flex;justify-content:space-between;gap:20px;color:var(--muted);font-size:13px}.closing a{color:var(--deep);font-weight:700;text-decoration-thickness:1px;text-underline-offset:4px}footer{padding:18px 20px;border-top:1px solid var(--line);color:var(--muted);font-size:11px}.footer-inner{width:min(var(--content),100%);margin:auto;display:flex;justify-content:space-between;gap:16px}
-    @media(max-width:650px){.header-inner{width:calc(100% - 32px);min-height:62px}.brand{font-size:11px}.back-link{font-size:12px}main{width:calc(100% - 32px);padding:40px 0 60px}.intro{padding-top:24px;margin-bottom:26px}.intro:after{width:40px;height:40px;right:8px;top:12px}h1{max-width:calc(100% - 26px);font-size:46px}.progress-row{align-items:flex-start;flex-direction:column;gap:7px}progress{width:100%}.question{padding:18px 14px 15px}.answers{grid-template-columns:1fr;gap:7px}.closing{margin-top:46px;flex-direction:column}.footer-inner{flex-direction:column;gap:5px}}
-    @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{transition-duration:.01ms!important}}
-  </style>
+  <link rel="stylesheet" href="assets/css/style.css">
   <script defer>
     document.addEventListener('DOMContentLoaded', () => {
       const questions = [
@@ -118,7 +107,7 @@
     });
   </script>
 </head>
-<body>
+<body class="page-quiz">
   <header class="header"><div class="header-inner">
     <a class="brand" href="index.html" aria-label="Retour à Chauny Art déco"><span class="brand-mark" aria-hidden="true"><span>C</span></span><span>CHAUNY<br>ART DÉCO</span></a>
     <a class="back-link" href="index.html">← Retour à l’exposition</a>
