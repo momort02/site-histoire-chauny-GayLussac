@@ -1119,8 +1119,6 @@ body.page-quiz {
     .result { min-height: 28px; margin: 0 0 0 4px; color: var(--deep); font-weight: 700; }
     .result.error { color: #963c2e; }
     .result:focus { outline: 2px solid var(--green); outline-offset: 4px; }
-    .closing { margin-top: 70px; padding: 25px 0; border-top: 1px solid var(--line); display: flex; justify-content: space-between; gap: 20px; color: var(--muted); font-size: 13px; }
-    .closing a { color: var(--deep); font-weight: 700; text-decoration-thickness: 1px; text-underline-offset: 4px; }
     footer { padding: 18px 20px; border-top: 1px solid var(--line); color: var(--muted); font-size: 11px; }
     .footer-inner { width: min(var(--content), 100%); margin: auto; display: flex; justify-content: space-between; gap: 16px; }
 
@@ -1136,7 +1134,6 @@ body.page-quiz {
         progress { width: 100%; }
         .question { padding: 18px 14px 15px; }
         .answers { grid-template-columns: 1fr; gap: 7px; }
-        .closing { margin-top: 46px; flex-direction: column; }
         .footer-inner { flex-direction: column; gap: 5px; }
     }
 
